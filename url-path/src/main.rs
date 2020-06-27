@@ -6,9 +6,12 @@ fn main() {
     println!("Path String: {}", pathstring);
 }
 
-fn getPath(url: &str) -> &str{
+fn getPath(url: &str) -> String{ // Have to convert this &str to String, and return strings using to_string() method
     match Url::parse(&url) {
-        Ok(parsed) => parsed.path(),
-        Err(_err) => ""
+        Ok(parsed) => parsed.path().to_string(),
+        Err(_err) => "".to_string(),
     }
 }
+
+
+// Solution to the &str -> String parsing trick obtained from https://users.rust-lang.org/t/borrowing-problem-in-function-to-get-path-of-an-url/44946/10?u=aiexplorations 
